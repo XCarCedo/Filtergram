@@ -1,0 +1,57 @@
+
+<WelcomeScreen>:
+    MDFloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0,0,0,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Label:
+            text:"Welcome to FilterGram..."
+            color: 1,1,1,1
+            pos_hint: {"center_x":.5, "center_y":.6}
+            font_size: "30sp"
+
+<SelectImage>:
+    MDFloatLayout:
+        MDFillRoundFlatButton:
+            text: "Choose image..."
+            font_size: "35sp"
+            md_bg_color: app.theme_cls.accent_color
+            radius:[30]
+            pos_hint: {"center_x": .5, "center_y":.5}
+            on_release: root.ChooseImage()
+
+<Loading>:
+    MDFloatLayout:
+        MDProgressBar:
+            id:progress
+            type: "indeterminate"
+            pos_hint: {"center_x":.5, "center_y": .5}
+            running_duration: 0.5
+            catching_duration: 1
+
+<ShowResult>:
+    MDBoxLayout:
+        orientation:"horizontal"
+        MDSwiper:
+            id: ResultList
+            pos_hint: {"center_x":.5, "center_y":.5}
+           
+
+
+<WindowsManager>:
+    id: manager
+    WelcomeScreen:
+        manager: manager
+        name:"welcomescreen"
+    SelectImage:
+        manager: manager
+        name:"selectimage"
+    Loading:
+        manager: manager
+        name:"loading"
+    ShowResult:
+        manager: manager
+        name:"showresult"
